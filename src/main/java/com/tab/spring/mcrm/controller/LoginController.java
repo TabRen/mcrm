@@ -1,6 +1,5 @@
 package com.tab.spring.mcrm.controller;
 
-import com.tab.spring.mcrm.service.CheckCache;
 import com.tab.spring.mcrm.service.ReadExcelService;
 import javax.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
@@ -19,8 +18,6 @@ public class LoginController {
   @Value("${file.name}")
   private String fileName;
 
-  @Autowired
-  private CheckCache checkCache;
   @Autowired
   private ReadExcelService readExcelService;
 

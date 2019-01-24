@@ -1,5 +1,6 @@
 package com.tab.spring.mcrm.service;
 
+import java.util.List;
 import java.util.Map;
 
 //读取Excel文件服务
@@ -12,11 +13,10 @@ public interface ReadExcelService {
   String getPassword();
 
   //服务器序列号所在行
-  //key: rowIndex
+  //key: rowNumber
   //value: sn
-  Map<String, String> serverSnMap();
+  List<Map<Integer, String>> getServerSnList();
 
   //放映机序列号所在行
-  Map<String, String> projectorSnMap();
-
+  List<Map<Integer, String>> getProjectorSnList();
 }

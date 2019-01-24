@@ -11,4 +11,9 @@ logging:
   file: /var/log/mcrm.log
   level: trace
 file:
-  name: /home/tab/Downloads/test.xlsx
+  #name: /home/tab/Downloads/test.xlsx
+  name: /Users/tab.ren/Downloads/test.xlsx
+  serverSn:
+    index: 18
+  projectorSn:
+    index: 15
