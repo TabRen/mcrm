@@ -1,0 +1,14 @@
+spring:
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    #开发时关闭缓存,不然没法看到实时页面
+    # Allow Thymeleaf templates to be reloaded at dev time
+    cache: false
+server:
+  port: 9009
+logging:
+  file: /var/log/mcrm.log
+  level: trace
+file:
+  name: /home/tab/Downloads/test.xlsx
