@@ -78,11 +78,13 @@
             </ul>
             <div class="tab-content" style="height:1000px">
               <div role="tabpanel" class="tab-pane active" id="Index" style="height:100%">
-                <div th:if="${status} eq failed">
-                  <div class="panelBar" th:replace="enc::enc"></div>
-                </div>
-                <div th:if="${status} eq success">
-                  <div class="panelBar" th:replace="search::search"></div>
+                <div th:switch="${status}">
+                  <div class="panelBar" th:case='failed'>
+                    <div th:replace="enc::enc"></div>
+                  </div>
+                  <div class="panelBar" th:case='success'>
+                    <div th:replace="search::search"></div>
+                  </div>
                 </div>
               </div>
             </div>

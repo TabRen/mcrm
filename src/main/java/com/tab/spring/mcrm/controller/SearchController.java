@@ -1,7 +1,7 @@
 package com.tab.spring.mcrm.controller;
 
 import com.tab.spring.mcrm.service.ReadExcelService;
-import com.tab.spring.mcrm.service.SearchByCellService;
+import com.tab.spring.mcrm.service.SearchService;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Slf4j
 @Controller
 @RequestMapping(value = "/")
-public class SearchResultController {
+public class SearchController {
 
   @Autowired
-  private SearchByCellService searchByCellService;
+  private SearchService searchService;
   @Autowired
   private ReadExcelService readExcelService;
 
@@ -40,12 +40,13 @@ public class SearchResultController {
     } else {
       //输入的序列号至少4位
       if ((null == sn) || (sn.trim().length() < 4)) {
-        model.addAttribute("message", "输入的序列号至少四位");
+        model.addAttribute("message", "输入的序列号至少为四位");
       } else {
         //auto to upper case
         sn = sn.trim().toUpperCase();
-        List<Map<String, String>> cellList = searchByCellService.searchResult(snType, sn);
-        model.addAttribute("ceallList", cellList);
+        List<Map<String, String>> cellList = searchService.searchResult(snType, sn);
+        model.addAttribute("snType", snType);
+        model.addAttribute("cellList", cellList);
       }
     }
     return "index";

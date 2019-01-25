@@ -1,7 +1,7 @@
 package com.tab.spring.mcrm.controller;
 
 import com.tab.spring.mcrm.service.ReadExcelService;
-import com.tab.spring.mcrm.service.SearchByCellService;
+import com.tab.spring.mcrm.service.SearchService;
 import javax.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,7 @@ public class LoginController {
   @Autowired
   private ReadExcelService readExcelService;
   @Autowired
-  private SearchByCellService searchByCellService;
+  private SearchService searchService;
 
   @RequestMapping(value = "/")
   public String Login(Model model, HttpServletRequest request) {

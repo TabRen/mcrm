@@ -9,16 +9,16 @@ server:
   port: 9009
 logging:
   file: /var/log/mcrm.log
-  level: trace
+  level: INFO
 file:
-  name: /home/tab/Downloads/test.xlsx
-  #name: /home/tab/Downloads/hspociksjnp.xlsx
-  #name: /Users/tab.ren/Downloads/test.xlsx
+  name: /home/hspociksjnp.xlsx
+  #  name: /Users/tab.ren/Downloads/test.xlsx
   serverSn:
     index: 16
   projectorSn:
     index: 14
 cell:
+  name: 影院名称,省,市,投资主体,TMS合同,TMS发货,TMS竣工日期,TMS序列号,影院地址,影院经理,机务经理,厅号,激光改造设备,放映机型号,放映机序列号,服务器型号,服务器序列号,放采购批次,服采购批次,设备原始初装时间,放映机到保日期,服务器到保日期
   show:
     server: 0,8,10,11,15,16,19,21
     projector: 0,8,10,11,13,14,19,20

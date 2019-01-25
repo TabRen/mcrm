@@ -27,6 +27,7 @@
       <table class="table table-bordered table-striped">
         <thead>
         <tr>
+          <th>序号</th>
           <th>影院名称</th>
           <th>影院地址</th>
           <th>机务经理</th>
@@ -34,32 +35,35 @@
           <th>设备型号</th>
           <th>设备序列号</th>
           <th>设备原始初装时间</th>
-          <th>设备原始初装时间</th>
           <th>设备到保日期</th>
         </tr>
         </thead>
         <tbody>
-        <tr>
-          <td>表格单元格</td>
-          <td>表格单元格</td>
-          <td>表格单元格</td>
-          <td>表格单元格</td>
-          <td>表格单元格</td>
-          <td>表格单元格</td>
-          <td>表格单元格</td>
-          <td>表格单元格</td>
-          <td>表格单元格</td>
-        </tr>
-        <tr>
-          <td>表格单元格</td>
-          <td>表格单元格</td>
-          <td>表格单元格</td>
-          <td>表格单元格</td>
-          <td>表格单元格</td>
-          <td>表格单元格</td>
-          <td>表格单元格</td>
-          <td>表格单元格</td>
-          <td>表格单元格</td>
+        <tr th:each="cellMap, cellMapStat : ${cellList}">
+          <td th:text="${cellMapStat.index} + 1">序号</td>
+          <td th:text="${cellMap['影院名称']}">影院名称</td>
+          <td th:text="${cellMap['影院地址']}">影院地址</td>
+          <td th:text="${cellMap['机务经理']}">机务经理</td>
+          <td th:text="${cellMap['厅号']}">厅号</td>
+          <div th:switch="${snType}">
+            <div th:case="serverSn">
+              <td th:text="${cellMap['服务器型号']}">服务器型号</td>
+              <td th:text="${cellMap['服务器序列号']}">服务器序列号</td>
+            </div>
+            <div th:case="projectorSn">
+              <td th:text="${cellMap['放映机型号']}">放映机型号</td>
+              <td th:text="${cellMap['放映机序列号']}">设备序列号</td>
+            </div>
+          </div>
+          <td th:text="${cellMap['设备原始初装时间']}">设备原始初装时间</td>
+          <div th:switch="${snType}">
+            <div th:case="serverSn">
+              <td th:text="${cellMap['服务器到保日期']}">服务器到保日期</td>
+            </div>
+            <div th:case="projectorSn">
+              <td th:text="${cellMap['放映机到保日期']}">放映机到保日期</td>
+            </div>
+          </div>
         </tr>
         </tbody>
       </table>

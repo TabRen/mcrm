@@ -4,6 +4,7 @@ import com.tab.spring.mcrm.service.ReadExcelService;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -12,6 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.poifs.crypt.Decryptor;
 import org.apache.poi.poifs.crypt.EncryptionInfo;
 import org.apache.poi.poifs.filesystem.POIFSFileSystem;
+import org.apache.poi.ss.usermodel.FormulaEvaluator;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
@@ -127,15 +129,29 @@ public class ReadExcelServiceImpl implements ReadExcelService {
       //判断数据的类型
       switch (cell.getCellTypeEnum()) {
         case NUMERIC:
-          DecimalFormat df = new DecimalFormat("0");
-          return df.format(cell.getNumericCellValue());
+          if ((cell.getColumnIndex() == 19) || (cell.getColumnIndex() == 20) || (
+              cell.getColumnIndex() == 21)) {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+            return sdf.format(cell.getDateCellValue());
+          } else {
+            DecimalFormat df = new DecimalFormat("0");
+            return df.format(cell.getNumericCellValue());
+          }
         case STRING:
           return cell.getStringCellValue();
         case BOOLEAN:
           return String.valueOf(cell.getBooleanCellValue());
         case FORMULA:
           //公式
-          return cell.getCellFormula();
+          if ((cell.getColumnIndex() == 19) || (cell.getColumnIndex() == 20) || (
+              cell.getColumnIndex() == 21)) {
+            FormulaEvaluator evaluator = workbook.getCreationHelper().createFormulaEvaluator();
+            evaluator.evaluateInCell(cell);
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+            return sdf.format(cell.getDateCellValue());
+          } else {
+            return cell.getCellFormula();
+          }
         case BLANK:
           //空值
           return "";
