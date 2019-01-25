@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8"/>
+</head>
+<body>
+<div class="search" th:fragment="search">
+  <h1>
+    <span style="color:red" th:text="${message}">message</span>
+  </h1>
+  <form action="#" th:action="@{/search}" method="post">
+    <div>
+      <p>设备类型:&nbsp;
+        <select name="snType" class="form-control" style="width:10%">
+          <option value="serverSn">&nbsp;服务器&nbsp;</option>
+          <option value="projectorSn">&nbsp;放映机&nbsp;</option>
+        </select>
+      </p>
+      <p>&nbsp;序列号:&nbsp;
+        <input name="sn" type="text" class="form-control" style="width:10%"/>
+      </p>
+      <p>
+        <button type="submit" class="form-control" style="width:10%">查询</button>
+      </p>
+    </div>
+    <div>
+      <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+          <th>影院名称</th>
+          <th>影院地址</th>
+          <th>机务经理</th>
+          <th>厅号</th>
+          <th>设备型号</th>
+          <th>设备序列号</th>
+          <th>设备原始初装时间</th>
+          <th>设备原始初装时间</th>
+          <th>设备到保日期</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>表格单元格</td>
+          <td>表格单元格</td>
+          <td>表格单元格</td>
+          <td>表格单元格</td>
+          <td>表格单元格</td>
+          <td>表格单元格</td>
+          <td>表格单元格</td>
+          <td>表格单元格</td>
+          <td>表格单元格</td>
+        </tr>
+        <tr>
+          <td>表格单元格</td>
+          <td>表格单元格</td>
+          <td>表格单元格</td>
+          <td>表格单元格</td>
+          <td>表格单元格</td>
+          <td>表格单元格</td>
+          <td>表格单元格</td>
+          <td>表格单元格</td>
+          <td>表格单元格</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </form>
+</div>
+</body>
+</html>

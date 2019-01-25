@@ -2,18 +2,18 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8"/>
-  <title>中数维保-文件解密</title>
 </head>
 <body>
-<h1>
-  <span style="color:red" th:text="${message}">message</span>
-</h1>
-<form action="#" th:action="@{/}" method="post">
-  <p>请输入密码:&nbsp;
-    <input name="password" type="password"/>
-    <button type="submit">解密</button>
-  </p>
-</form>
-
+<div class="enc" th:fragment="enc">
+  <h1>
+    <span style="color:red" th:text="${message}">message</span>
+  </h1>
+  <form action="#" th:action="@{/}" method="post">
+    <p>请输入密码:&nbsp;
+      <input name="password" type="password"/>
+      <button type="submit">解密</button>
+    </p>
+  </form>
+</div>
 </body>
 </html>

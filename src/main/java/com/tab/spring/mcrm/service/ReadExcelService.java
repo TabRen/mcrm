@@ -7,16 +7,20 @@ import java.util.Map;
 public interface ReadExcelService {
 
   //解密
-  void verifyPassword(String fileName, String password);
+  void verifyPassword(String password);
 
-  //保存密码到缓存
+  void setPassword(String password);
+
   String getPassword();
 
   //服务器序列号所在行
-  //key: rowNumber
-  //value: sn
-  List<Map<Integer, String>> getServerSnList();
+  //key: rowNumber value: rowNumber
+  //key: serverSn value: sn
+  List<Map<String, String>> getServerSnList();
 
   //放映机序列号所在行
-  List<Map<Integer, String>> getProjectorSnList();
+  List<Map<String, String>> getProjectorSnList();
+
+  //读取指定单元格的内容
+  String getCellStringValue(String rowNum, String cellNum);
 }

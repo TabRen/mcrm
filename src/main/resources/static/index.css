@@ -1,0 +1,9 @@
+body {
+  font-size: 12px;
+}
+.nav > li > a {
+  padding: 5px 10px;
+}
+.tab-content {
+  padding-top: 3px;
+}
