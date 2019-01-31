@@ -36,10 +36,14 @@ public class SearchServiceImpl implements SearchService {
       case "serverSn":
         cellList = readExcelService.getServerSnList();
         cellIndex = serverCell.split(",");
+        log.info("SearchServiceImpl searchResult detected serverSn, snType: {}, sn: {}", snType,
+            sn);
         break;
       case "projectorSn":
         cellList = readExcelService.getProjectorSnList();
         cellIndex = projectorCell.split(",");
+        log.info("SearchServiceImpl searchResult detected projector, snType: {}, sn: {}", snType,
+            sn);
         break;
       default:
         log.info("SearchServiceImpl searchResult error, snType: {}, sn: {}", snType, sn);
