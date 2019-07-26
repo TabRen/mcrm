@@ -6,19 +6,21 @@ spring:
     # Allow Thymeleaf templates to be reloaded at dev time
     cache: false
 server:
-  port: 9009
+  port: 8091
 logging:
-  file: /var/log/mcrm.log
+  file: /var/log/2019mcrm.log
   level: INFO
 file:
-  name: /home/hspociksjnp.xlsx
-  #  name: /Users/tab.ren/Downloads/test.xlsx
+  name: /home/2019mcrm.xlsx
+  #name: /Users/tab.ren/Downloads/test.xlsx
+#  name: /home/tab/Downloads/2019年巡检清单（各厂家合表2.xlsx
+  sheets: 0
   serverSn:
-    index: 16
+    index: 7
   projectorSn:
-    index: 14
+    index: 7
 cell:
-  name: 影院名称,省,市,投资主体,TMS合同,TMS发货,TMS竣工日期,TMS序列号,影院地址,影院经理,机务经理,厅号,激光改造设备,放映机型号,放映机序列号,服务器型号,服务器序列号,放采购批次,服采购批次,设备原始初装时间,放映机到保日期,服务器到保日期
+  name: 影院名称,省,市,院线名称,专资编码,厅号,放映机型号,放映机序列号,影院地址,影院经理,机务经理,财务经理,法人代表
   show:
-    server: 0,8,10,11,15,16,19,21
-    projector: 0,8,10,11,13,14,19,20
+    server: 0,3,5,6,7,8,9,10
+    projector: 0,3,5,6,7,8,9,10

@@ -33,6 +33,8 @@ public class ReadExcelServiceImpl implements ReadExcelService {
   //从yaml获取值
   @Value("${file.name}")
   private String fileName;
+  @Value("${file.sheets}")
+  private String sheets;
   @Value("${file.serverSn.index}")
   private String serverSnIndex;
   @Value("${file.projectorSn.index}")
@@ -50,8 +52,12 @@ public class ReadExcelServiceImpl implements ReadExcelService {
         log.info("ReadExcelServiceImpl verifyPassword success");
         setPassword(password);
         workbook = new XSSFWorkbook(decryptor.getDataStream(pfs));
-        setServerSnList();
-        setProjectorSnList();
+        List<Integer> sheetList = new ArrayList<>();
+        for (String sheetIndex : sheets.split(",")) {
+          sheetList.add(Integer.valueOf(sheetIndex));
+        }
+        setServerSnList(sheetList);
+        setProjectorSnList(sheetList);
       } else {
         //解密失败
         setPassword(null);
@@ -92,34 +98,38 @@ public class ReadExcelServiceImpl implements ReadExcelService {
     return getCellStringValue(cell);
   }
 
-  private void setProjectorSnList() {
-    XSSFSheet sheet = workbook.getSheetAt(0);
-    for (Row row : sheet) {
-      if (row.getRowNum() == 0) {
-        //跳过表头
-        continue;
+  private void setProjectorSnList(List<Integer> sheets) {
+    for (int sheetIndex : sheets) {
+      XSSFSheet sheet = workbook.getSheetAt(sheetIndex);
+      for (Row row : sheet) {
+        if (row.getRowNum() == 0) {
+          //跳过表头
+          continue;
+        }
+        XSSFCell cell = ((XSSFRow) row).getCell(Integer.parseInt(projectorSnIndex));
+        Map<String, String> map = new HashMap<>();
+        map.put("rowNum", String.valueOf(row.getRowNum()));
+        map.put("projectorSn", getCellStringValue(cell));
+        projectorSnList.add(map);
       }
-      XSSFCell cell = ((XSSFRow) row).getCell(Integer.parseInt(projectorSnIndex));
-      Map<String, String> map = new HashMap<>();
-      map.put("rowNum", String.valueOf(row.getRowNum()));
-      map.put("projectorSn", getCellStringValue(cell));
-      projectorSnList.add(map);
     }
     log.info("ReadExcelServiceImpl setProjectorSnList count: {}", projectorSnList.size());
   }
 
-  private void setServerSnList() {
-    XSSFSheet sheet = workbook.getSheetAt(0);
-    for (Row row : sheet) {
-      if (row.getRowNum() == 0) {
-        //跳过表头
-        continue;
+  private void setServerSnList(List<Integer> sheets) {
+    for (int sheetIndex : sheets) {
+      XSSFSheet sheet = workbook.getSheetAt(sheetIndex);
+      for (Row row : sheet) {
+        if (row.getRowNum() == 0) {
+          //跳过表头
+          continue;
+        }
+        XSSFCell cell = ((XSSFRow) row).getCell(Integer.parseInt(serverSnIndex));
+        Map<String, String> map = new HashMap<>();
+        map.put("rowNum", String.valueOf(row.getRowNum()));
+        map.put("serverSn", getCellStringValue(cell));
+        serverSnList.add(map);
       }
-      XSSFCell cell = ((XSSFRow) row).getCell(Integer.parseInt(serverSnIndex));
-      Map<String, String> map = new HashMap<>();
-      map.put("rowNum", String.valueOf(row.getRowNum()));
-      map.put("serverSn", getCellStringValue(cell));
-      serverSnList.add(map);
     }
     log.info("ReadExcelServiceImpl getServerSnList count: {}", serverSnList.size());
   }

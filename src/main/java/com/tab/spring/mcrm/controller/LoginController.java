@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Slf4j
 @Controller
-//@RequestMapping(value = "/")
 public class LoginController {
 
   @Autowired
@@ -19,7 +18,7 @@ public class LoginController {
   @Autowired
   private SearchService searchService;
 
-  @RequestMapping(value = "/")
+  @RequestMapping(value = "/*")
   public String Login(Model model, HttpServletRequest request) {
     String password = request.getParameter("password");
     if ((null != password) && !password.trim().isEmpty()) {
